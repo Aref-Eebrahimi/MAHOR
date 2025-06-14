@@ -310,6 +310,9 @@
         padding-top: 20px;
         padding-bottom: 0px;
       }
+      .hero .hero-center{
+        padding: 25px 0px;
+      }
 
       .hero-image img {
         width: 60%;
@@ -352,10 +355,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0px 0px ;
        
       }
        .hero-image-phon img{
         width: 85%;
+        
        }
 
       /* منو  */
@@ -379,11 +384,11 @@
         display: flex;
       }
       .hero-center .description{
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
       }
       .hero-center .description1{
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 300;
       }
        .hero-center {
@@ -395,22 +400,27 @@
         flex-direction: column;
 
       }
+      .buttons .dropdown{
+        margin: 0px 20px;
+      }
        .dropdown .dropdown-btn{
         width: 100%;
-        padding: 10px 0px;
+        padding: 7px 0px;
        font-size: 24px;
        font-weight: 500;
        border-radius: 17px;
+
       
       }
       .dropdown .dropdown-content {
-        
-        width: 100%;
+         padding: 8px 0px;
+         width: 100%;
       }
      
       .buttons a{
+        margin: 0px 20px;
        font-size: 24px;
-        padding: 10px 0px;
+        padding: 7px 0px;
          font-weight: 500;
          border-radius: 17px;
       }
