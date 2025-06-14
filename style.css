@@ -118,9 +118,7 @@
     }
 
    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px; 
+    
       font-size: 45px;
       cursor: pointer;
       color: black;
@@ -309,7 +307,8 @@
       .hero {
         flex-direction: column;
         text-align: center;
-        padding-top: 45px;
+        padding-top: 20px;
+        padding-bottom: 0px;
       }
 
       .hero-image img {
