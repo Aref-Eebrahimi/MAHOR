@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرم ثبت اطلاعات مدرسه</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+      @font-face {
+          font-family: 'peyda';
+          src: url('../fonts/PEYDA-THIN.TTF') format('woff2');
+          font-weight: normal;
+          font-style: normal;
+        }
+          @font-face {
+          font-family: 'peydabold';
+          src: url('../fonts/PEYDA-SEMIBOLD.TTF') format('woff2');
+          font-weight: normal;
+          font-style: normal;
+        }
+     body {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'peyda', sans-serif;
+    }
+     body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../imgs/Register-login/rgistatre.png') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(6px) brightness(1.1);
+      z-index: -2;
+    }
+  
+
+    .form-container {
+     background: rgba(0, 19, 51, 0.578);
+      padding: 50px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 520px;
+      color: white;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .phonenumber{
+      text-align: right;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 6px 4px;
+      font-size: 13px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #fe7743;
+      border-radius: 6px;
+      color: white;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #f9f8f8;
+      font-size: 15px;
+        font-family: 'peyda', sans-serif;
+        
+    }
+
+    input:focus {
+      border-bottom: 1px solid #fe7743;
+      
+    }
+    input{
+    
+    }
+
+    .two-cols, .half-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+    }
+
+    .two-cols .form-group {
+      /* flex: 1 1 calc(33.333% - 8px); */
+
+       flex: 1 1 calc(20% - 8px);
+      margin: 20px 10px;
+        
+    }
+  
+
+    .half-cols .form-group {
+      flex: 1 1 calc(20% - 8px);
+      margin: 20px 10px;
+       
+       
+    }
+   
+    .upload-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+      border: 1.5px dashed #cccccc;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: rgba(255,255,255,0.1);
+      transition: background-color 0.3s;
+        
+    }
+
+    .upload-wrapper:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .upload-wrapper i {
+      font-size: 20px;
+      color: #ffffff;
+        
+    }
+    .upload-wrapper .pi{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+     .upload-wrapper p{
+       font-family: 'peyda', sans-serif;
+     }
+    .upload-wrapper input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+     
+    }
+
+    .submit-btn {
+      background-color: #fe7743;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+       font-family: 'peydabold', sans-serif;
+    }
+
+    .submit-btn:hover {
+      background-color: #fe7743;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #eeeeee;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+ .preview-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preview-container img {
+  max-width: 50px;
+  max-height: 50px;
+  border: 1px solid #ff7043;
+  padding: 3px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+
+
+    @media (max-width: 600px) {
+      .two-cols .form-group,
+      .half-cols .form-group {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+
+  <div class="myform">
+    <div class="form-container">
+    <form id="schoolForm">
+      <div class="half-cols">
+        <div class="form-group">
+          <input type="text" name="manager_name" placeholder="نام و نام خانوادگی مدیر *" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="school_name" placeholder="نام مدرسه *" required>
+        </div>
+      </div>
+      <div class="two-cols">
+        <div class="form-group">
+          <input type="text" name="province" placeholder="استان *" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="city" placeholder="شهر *" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="zone" placeholder="منطقه *" required>
+        </div>
+      </div>
+      <div class="half-cols">
+        <div class="form-group">
+          <input class="phonenumber" type="tel" name="phone" placeholder="شماره موبایل *" pattern="09[0-9]{9}" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="nid" placeholder="کد ملی مدیر *" pattern="\d{10}" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="upload-wrapper">
+          <div class="pi">
+            <i id="uploadIcon" class="fas fa-upload"> </i>
+            <p>بارگزاری مدارک</p>
+          </div>
+          
+          <input type="file" name="documents" id="fileInput" accept="image/*" required>
+          <div id="previewContainer" class="preview-container"></div>
+       </div>
+       
+      </div>
+       <p class="note">* ضمیمه‌نامه رسمی یا معرفی‌نامه با امضاء و تایید رئیس اداره الزامیست</p>
+      <button type="submit" class="submit-btn">ارسال برای بررسی</button>
+     
+    </form>
+  </div>
+
+  </div>
+  
+
+  <script>
+    document.getElementById('schoolForm').addEventListener('submit', function(event) {
+      const inputs = this.querySelectorAll('input[required]');
+      let valid = true;
+
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.style.borderBottom = '1px solid red';
+          valid = false;
+        } else {
+          input.style.borderBottom = '1px solid #ff7043';
+        }
+      });
+
+      if (!valid) {
+        event.preventDefault();
+        alert("لطفاً همه فیلدهای الزامی را به درستی پر کنید.");
+      }
+    });
+
+document.getElementById('fileInput').addEventListener('change', function(event) {
+  const files = event.target.files;
+  const previewContainer = document.getElementById('previewContainer');
+  const uploadIcon = document.getElementById('uploadIcon');
+
+  // مخفی کردن آیکن پس از آپلود
+  if (files.length > 0) {
+    uploadIcon.style.display = 'none';
+  }
+
+  Array.from(files).forEach(file => {
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        previewContainer.appendChild(img);
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+});
+
+
+
+  </script>
+</body>
+</html>

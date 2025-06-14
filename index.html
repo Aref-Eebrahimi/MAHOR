@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAHOR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="./style.css">
+</head>
+<!--  رنگ اول :#fe7743 
+      رنگ دوم :#oa3578 
+-->
+<body>
+<header>
+  <nav>
+   <div class="navbar-mobile">
+       <div class="menu-toggle" id="menuToggle" onclick="openMenu()">&#9776;</div>
+       <div class="logo2">MAHOR</div>
+    </div>
+  
+    <ul id="menu" class="desktop">
+      <li><a href="#">صفحه اصلی</a></li>
+      <li><a href="#">خدمات</a></li>
+      <li><a href="#">درباره ما</a></li>
+      <li><a href="#">تماس با ما</a></li>
+      <li><a href="#">خرید اشتراک</a></li>
+    </ul>
+    
+    <ul id="menuMobile" class="mobile-menu">
+      <span class="close-btn" onclick="closeMenu()">&times;</span>
+      <li><a href="#">صفحه اصلی</a></li>
+      <li><a href="#">خدمات</a></li>
+      <li><a href="#">درباره ما</a></li>
+      <li><a href="#">تماس با ما</a></li>
+      <li><a href="#">خرید اشتراک</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section class="hero">
+    <div class="hero-image left">
+      <img src="./imgs/home/1.png" alt="پسر دانش‌آموز" />
+    </div>
+    <div class="hero-image-phon">
+      <img src="./imgs/home/phon.png" alt="">
+    </div>
+
+
+    <div class="hero-center">
+      <h1 class="logo">MAHOR</h1>
+       <div class="logo-blanks">
+        <span class="logo-blank"></span>
+        <span class="logo-blank"></span>
+        <span class="logo-blank"></span>
+        <span class="logo-blank"></span>
+        <span class="logo-blank"></span>
+       </div>
+      <p class="description">انتخابی درست در تدریس و آموزش</p>
+      <p class="description1">توانمندسازی ذهن‌ها، تغییر زندگی</p>
+      <div class="buttons">
+  
+          
+        <div class="dropdown">
+            <button class="dropdown-btn">ورود / ثبت‌نام <span class="arrow">▶</span></button>
+            <div class="dropdown-content">
+            <a href="./Register-login/log.html">ورود</a>
+            <a href="./Register-login/Registration.html">ثبت نام </a>
+            </div>
+        </div>
+      
+        <a href="#" class="btn outlines">تست رایگان</a>
+        <a href="#" class="btn outline">خرید اشتراک</a>
+      </div>
+    </div>
+
+    <div class="hero-image right">
+      <img src="./imgs/home/image.png" alt="دختر دانش‌آموز" />
+    </div>
+  </section>
+  <script>
+function openMenu() {
+  document.getElementById("menuMobile").classList.add("show");
+  document.getElementById("menuToggle").classList.add("hide");
+}
+
+function closeMenu() {
+  document.getElementById("menuMobile").classList.remove("show");
+  document.getElementById("menuToggle").classList.remove("hide");
+}
+</script>
+</body>
+</html>
