@@ -194,21 +194,24 @@
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
-
-
-
     @media (max-width: 600px) {
       .two-cols .form-group,
       .half-cols .form-group {
         flex: 1 1 100%;
       }
+      .myform{
+        
+      }
+        .form-container {
+      padding: 30px;
+      width: 90%;
+      max-width: 300px;
+    }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
-
   <div class="myform">
     <div class="form-container">
     <form id="schoolForm">
@@ -243,7 +246,7 @@
         <div class="upload-wrapper">
           <div class="pi">
             <i id="uploadIcon" class="fas fa-upload"> </i>
-            <p>بارگزاری مدارک</p>
+            <p id="uploadtext">بارگزاری مدارک</p>
           </div>
           
           <input type="file" name="documents" id="fileInput" accept="image/*" required>
@@ -288,6 +291,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
   // مخفی کردن آیکن پس از آپلود
   if (files.length > 0) {
     uploadIcon.style.display = 'none';
+    uploadtext.style.display='none';
+    
   }
 
   Array.from(files).forEach(file => {
