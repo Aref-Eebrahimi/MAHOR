@@ -39,8 +39,6 @@
       color: #ff5722;
     }
 
-  /* 33333 */
-
   .navbar-mobile {
     display: none;
     
@@ -124,7 +122,7 @@
       color: black;
 }
 
-
+/* ********* hero************* */
     
     .hero {
       position: relative;

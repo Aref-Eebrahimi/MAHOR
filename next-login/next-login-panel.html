@@ -9,29 +9,118 @@
   <link rel="stylesheet" href="../style.css">
 
   <style>
+   
+    
     .hero{
         padding: 20px 20px;
     }
-
-    .buttons{
-       
-       
-    }   
-    .buttons a{
+    .button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+  
+    .button a{
         background-color: #fe7743;
          text-decoration: none;
          padding: 10px 20px;
          color: aliceblue;
     }
 
-    .buttons .hozor{
+    .button .hozor{
       border-bottom-right-radius: 50px;
       border-top-right-radius: 50px;
     }
-    .buttons .amalcart{
+    .button .amalcart{
       border-top-left-radius: 70px;
 
     }
+
+    .buttons{
+      display: none;
+    }
+    .buttonican{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+      
+      
+    }
+     .buttonican img{
+     display: none;
+    }
+       @media (max-width: 768px) {
+       
+     .buttons{
+        display: flex;
+        flex-direction: column;
+
+      }
+      .buttons .dropdown{
+        margin: 0px 20px;
+      }
+       .dropdown .dropdown-btn{
+        width: 100%;
+        padding: 7px 0px;
+       font-size: 20px;
+       font-weight: 500;
+       border-radius: 17px;
+
+      
+      }
+      .dropdown .dropdown-content {
+         padding: 8px 0px;
+         width: 100%;
+      }
+     
+      .buttons a{
+        margin: 0px 20px;
+       font-size: 20px;
+        padding: 7px 0px;
+         font-weight: 500;
+         border-radius: 17px;
+      }
+
+       .buttonfooter{
+        border-top: 1px solid #b2bec3;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 25px;
+
+      }
+      .buttonfooter .button{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       
+     
+      
+         
+       }
+          .button a{
+        background-color:white;
+        padding: 0px 0px;
+         color: black;
+    }
+    .buttonican{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .buttonican img{
+      display: block;
+      width: 20px;
+    }
+     
+
+
+        
+       }
 
   </style>
 </head>
@@ -92,17 +181,47 @@
         <span class="logo-blank"></span>
         <span class="logo-blank"></span>
        </div>
-       <div class="buttons">
-        <a class="hozor" href="">حضور</a>
-        <a href="">ثبت نام</a>
-        <a href=""> شورا</a>
-        <a class="amalcart" href="">عملکرد</a>
-       </div>
+        <div class="buttons">
+          <div class="dropdown">
+              <button class="dropdown-btn">ورود / ثبت‌نام <span class="arrow">▶</span></button>
+              <div class="dropdown-content">
+              <a href="./Register-login/log.html">ورود</a>
+              <a href="./Register-login/Registration.html">ثبت نام </a>
+              </div>
+          </div>
+        
+          <a href="#" class="btn outlines">تست رایگان</a>
+          <a href="#" class="btn outline">خرید اشتراک</a>
+      </div>
+
+       <div class="buttonfooter">
+          <div class="button">
+            <div class="buttonican">
+              <img src="../fonts/ican/Frame.png" alt="">
+              <a class="hozor" href="">حضور</a>
+            </div>
+            <div class="buttonican">
+              <img src="../fonts/ican/Clip path group.png" alt="">
+              <a href="">ثبت نام</a>
+            </div>
+            <div class="buttonican">
+              <img src="../fonts/ican/Group.png" alt="">
+              <a href=""> شورا</a>
+            </div>
+           <div class="buttonican">
+            <img src="../fonts/ican/Group (1).png" alt="">
+            <a class="amalcart" href="">عملکرد</a>  
+           
+           </div>
+           
+          </div>
+      </div>
     </div>
 
     <div class="hero-image right">
       <img src="../imgs/home/image.png" alt="دختر دانش‌آموز" />
     </div>
+   
   </section>
   <script>
 function openMenu() {
