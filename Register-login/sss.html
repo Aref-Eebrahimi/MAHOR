@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>تأیید رمز</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      direction: rtl;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../imgs/Register-login/rgistatre.png') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(6px) brightness(1.1);
+      z-index: -2;
+    }
+
+
+    .container {
+       background: rgba(0, 19, 51, 0.578);
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .inputs input {
+      width: 40px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .inputs input.error {
+      border-color: red;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      background-color: #ff5c33;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e64a19;
+    }
+
+    .error-text {
+      color: red;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .success-text {
+      color: limegreen;
+      margin-top: 15px;
+      display: none;
+    }
+    
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="inputs">
+      <input type="text" maxlength="1" />
+      <input type="text" maxlength="1" />
+      <input type="text" maxlength="1" />
+      <input type="text" maxlength="1" />
+      <input type="text" maxlength="1" />
+    </div>
+    <button class="btn" onclick="checkCode()">ارسال مجدد</button>
+    <div class="error-text" id="errorText">رمز شما اشتباه است</div>
+    <div class="success-text" id="successText">رمز صحیح وارد شد!</div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('.inputs input');
+    const errorText = document.getElementById('errorText');
+    const successText = document.getElementById('successText');
+    const correctCode = "12345"; // رمز صحیح
+
+    inputs[0].focus();
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+        clearErrors();
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+
+    function checkCode() {
+      const entered = Array.from(inputs).map(i => i.value).join("");
+      if (entered === correctCode) {
+        showSuccess();
+      } else {
+        showError();
+      }
+    }
+
+    function showError() {
+      errorText.style.display = "block";
+      successText.style.display = "none";
+      inputs.forEach(input => {
+        input.classList.add("error");
+        input.value = "";
+      });
+      inputs[0].focus();
+    }
+
+    function showSuccess() {
+      errorText.style.display = "none";
+      successText.style.display = "block";
+      inputs.forEach(input => input.classList.remove("error"));
+    }
+
+    function clearErrors() {
+      errorText.style.display = "none";
+      successText.style.display = "none";
+      inputs.forEach(input => input.classList.remove("error"));
+    }
+  </script>
+</body>
+</html>
