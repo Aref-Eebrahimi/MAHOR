@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دانش آموزان در انتظار تایید</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+          @font-face {
+          font-family: 'peyda';
+          src: url('../fonts/PEYDA-THIN.TTF') format('woff2');
+          font-weight: normal;
+          font-style: normal;
+        }
+      * {
+        box-sizing: border-box;
+        font-family: "peyda", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        background-color: #f4f4f4;
+        direction: rtl;
+        height: 100vh;
+      }
+
+      .contents {
+        display: flex;
+      }
+
+      .sidebar {
+        max-width: 34rem;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 2rem;
+        border-left: 1px solid #ddd;
+      }
+
+      .sidebar-btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+          .profile {
+        margin-bottom: 1rem;
+        margin-top: 0rem;
+        margin-right: 3rem;
+      }
+
+      .profile img {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+      }
+
+      .profile-info .name {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .profile-info div:last-child {
+        font-size: 1.2rem;
+        color: #444;
+      }
+
+      .accordion {
+        border: 1px solid #303030;
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-bottom: 1.2rem;
+      }
+
+      .accordion-header {
+        background-color: #f6f6f6;
+        padding: 0.8rem 1.4rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        position: relative;
+        cursor: pointer;
+        color: #3e3e3e;
+        transition: background 0.3s;
+      }
+
+      .accordion-header::before {
+        content: "▼";
+        position: absolute;
+        font-size: 1rem;
+        left: 1.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+      }
+
+      .accordion.open {
+        border: 1px solid #f4a88a14;
+      }
+
+      .accordion.open .accordion-header::before {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .accordion.open .accordion-header {
+        background-color: #ff7b1f;
+      }
+
+      .accordion-content {
+        display: none;
+        background-color: #fff;
+        padding: 1rem 1.6rem;
+        border-top: 1px solid #eee;
+      }
+
+      .accordion.open .accordion-content {
+        display: block;
+      }
+
+      .accordion-content a {
+        display: block;
+        background-color: #f3f3f3;
+        padding: 1rem;
+        margin-bottom: 0.8rem;
+        text-decoration: none;
+        border-radius: 0.8rem;
+        color: #3e3e3e;
+        font-size: 1.2rem;
+        transition: 0.3s;
+      }
+
+      .accordion-content a:hover {
+        background-color: #eaeaea;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #aaa;
+        margin-top: 3rem;
+      }
+
+      .logout {
+        display: block;
+        background-color: #ff7b1f;
+        color: white;
+        text-align: right;
+        padding: 1.2rem;
+        margin-top: 2rem;
+        border-radius: 1rem;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+
+      /*MAIN PART*/
+
+      .main {
+        padding: 2rem 1.2rem 2rem 0;
+        max-width: 123.4rem;
+        width: 100%;
+      }
+
+      .main-header {
+        background-color: #ff7b1f;
+        color: white;
+        padding: 1.2rem;
+        line-height: 2;
+        border-radius: 1.6rem;
+        min-height: 10rem;
+        max-width: 95rem;
+        margin: 2rem 1rem 2rem 2rem;
+      }
+
+      .main-menu {
+        display: none;
+      }
+
+      .student-list {
+        display: flex;
+        flex-direction: column;
+        max-width: 90rem;
+        margin: 2rem 3rem 3rem 3rem;
+      }
+
+      .student-list-individual {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #cec9c9;
+        padding-bottom: 1rem;
+        font-size: 1.6rem;
+        color: #666666;
+        font-weight: 600;
+      }
+
+      .regect-btn {
+        padding: 0.2rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: #ff082d;
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      .approved-btn {
+        padding: 0.2rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: rgb(33, 112, 33);
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      .main-form {
+        text-align: left;
+        margin-left: 6rem;
+        margin-bottom: 3rem;
+      }
+
+      .main-form input {
+        text-align: left;
+        border: 1px solid #f5f5f5;
+        outline: none;
+        border-radius: 1rem;
+        padding: 1rem 3rem;
+      }
+
+      .main-form input:focus {
+        border: 1px solid #f5f5f5;
+      }
+
+   
+
+      .modal-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #0a357869;
+        /* padding: 2rem 1rem; */
+        border-radius: 1rem;
+        max-width: 40rem;
+        width: 100%;
+        height: 30rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-form--input input {
+        padding: 1rem 1.5rem;
+        height: 10rem;
+      }
+
+      /* BOTTOME NAVIGATION */
+
+      .bottom-nav {
+        display: none; /* hidden by default, shown in mobile */
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: #ffffff;
+        border-top: 1px solid #ccc;
+        z-index: 1000;
+        justify-content: space-around;
+        padding: 1rem 0;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .bottom-nav a {
+        text-decoration: none;
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #333;
+      }
+      /* ************جدید********** */
+        
+        .dropdown-container {
+           margin: 10px 20px ;
+            position: relative;
+        
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .dropdown-btn {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #EBF4FD;
+            color: black;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: right;
+             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+             display: flex;
+             justify-content: space-between;
+       
+        }
+        
+        .dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transition: max-height 1s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.dropdown-content.show {
+    max-height: 300px;
+    opacity: 1;
+    overflow-y: auto;
+}
+
+
+
+        
+        .dropdown-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .name {
+            font-weight: bold;
+             font-size: 1.35em;
+        }
+        
+        .class {
+            color: #000;
+             font-size: 1em;
+             font-weight: bold;
+        }
+        
+        .number {
+            color: #000;
+            font-size: 1em;
+             font-weight: bold;
+        }
+        
+        .show {
+            display: block;
+        }
+
+   
+
+
+        
+
+      /* ***************جدید************** */
+
+      /* RESPONSIVENESS */
+      @media (max-width: 768px) {
+
+        
+        .sidebar {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          max-width: 28rem;
+          height: 100%;
+          color: black;
+          padding: 1rem;
+          transition: right 2s ease;
+          z-index: 1001;
+          overflow-y: auto;
+        }
+
+        .sidebar.active {
+          right: 0;
+        }
+
+        .student-list {
+          margin: 0 2rem;
+          align-content: center;
+        }
+
+        .student-list-individual {
+          font-size: 1.2rem;
+        }
+
+        .main {
+          padding-bottom: 7rem;
+        }
+
+        .main-form {
+          text-align: right;
+          margin-right: 3rem;
+        }
+        .dropdown-content.show {
+            max-height: 100vh; /* استفاده از ارتفاع viewport */
+            opacity: 1;
+            overflow-y: auto; /* یا hidden اگر نمی‌خواهید اسکرول شود */
+        }
+
+        /* menu */
+        .main-menu {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 2rem;
+         
+        }
+
+        /* bottom nav bar */
+        .bottom-nav {
+          display: flex;
+        }
+        .menu-btn{
+            border: none;
+        }
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contents">
+    <aside class="sidebar">
+        <!-- پروفایل -->
+     <aside class="sidebar">
+        <!-- پروفایل -->
+        <div class="profile">
+          <img src="../imgs/home/44.png" alt="User" />
+          <div class="profile-info">
+            <div class="name">جناب جعفری</div>
+            <div>مدیر مدرسه شهید باقری</div>
+          </div>
+        </div>
+
+        <div class="sidebar-btns">
+          <!-- اطلاعات حساب -->
+          <div class="accordion">
+            <div class="accordion-header">اطلاعات حساب کاربری</div>
+            <div class="accordion-content">
+            <a href="./2.html"> مشاهده و ویرایش مشخصات مدیر</a>
+            <a href="./3.html">ایجاد رمز عبور ثابت</a>
+            <a href="./4.html">تغییر رمز عبور ثابت</a>
+            </div>
+          </div>
+
+          <!-- مدیریت کلاس‌ها -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت کلاس ها</div>
+            <div class="accordion-content">
+            <a href="./5.html">  لیست کلاس‌ها برسی/ ویرایش</a>
+            <a href="./7.html"> افزودن</a>
+            </div>
+          </div>
+
+          <!-- مدیریت دانش‌آموزان -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت دانش آموزان</div>
+            <div class="accordion-content">
+              <a href="./8.html"> لیست دانش‌آموزان</a>
+              <a href="#">مشاهده دانش آموزان هر کلاس</a>
+              <a href="#">افزودن دانش‌آموزان جدید</a>
+            </div>
+          </div>
+
+          <!-- مدیریت معلم‌ها -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت معلم ها</div>
+            <div class="accordion-content">
+             <a href="./teacher-list.html"> لیست معلمان مدرسه</a>
+             <a href="#">  برسی ورودی و خروجی معلم ها</a>
+             <a href="#">   افزودن معلم جدید</a>
+            </div>
+          </div>
+
+          <!-- حضور و غیاب -->
+          <div class="accordion">
+            <div class="accordion-header">حضور و غیاب دانش آموزان</div>
+            <div class="accordion-content">
+            <a href="./absent-list-not.html"> دانش آموزان غایب برسی شده</a>
+            <a href="./absent-list.html"> دانش‌آموزان غایب برسی نشد</a>
+            </div>
+          </div>
+
+          <div class="accordion open">
+            <div class="accordion-header">مدیریت ثبت نام ها</div>
+            <div class="accordion-content">
+               <a href="./approved-student-list.html"> دانش‌آموزان در انتظار تایید</a>
+               <a href="#"> دانش‌آموزان در انتظار کلاس بندی</a>
+            </div>
+          </div>
+
+          <!-- فوتر -->
+          <div>
+            <div class="footer">MAHOR</div>
+            <a href="#" class="logout"> خروج از حساب کاربری</a>
+          </div>
+        </div>
+      </aside>
+
+        <div class="sidebar-btns">
+          <!-- اطلاعات حساب -->
+          <div class="accordion">
+            <div class="accordion-header">اطلاعات حساب کاربری</div>
+            <div class="accordion-content">
+            <a href="./m1.html"> مشاهده و ویرایش مشخصات مدیر</a>
+            <a href="">ایجاد رمز عبور ثابت</a>
+            <a href="">تغییر رمز عبور ثابت</a>
+            </div>
+          </div>
+
+          <!-- مدیریت کلاس‌ها -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت کلاس ها</div>
+            <div class="accordion-content">
+            <a href="#">  لیست کلاس‌ها برسی/ ویرایش</a>
+            <a href="#"> افزودن</a>
+            </div>
+          </div>
+
+          <!-- مدیریت دانش‌آموزان -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت دانش آموزان</div>
+            <div class="accordion-content">
+              <a href="#"> لیست دانش‌آموزان</a>
+              <a href="#">مشاهده دانش آموزان هر کلاس</a>
+              <a href="#">افزودن دانش‌آموزان جدید</a>
+            </div>
+          </div>
+
+          <!-- مدیریت معلم‌ها -->
+          <div class="accordion">
+            <div class="accordion-header">مدیریت معلم ها</div>
+            <div class="accordion-content">
+             <a href="#"> لیست معلمان مدرسه</a>
+             <a href="#">  برسی ورودی و خروجی معلم ها</a>
+             <a href="#">   افزودن معلم جدید</a>
+            </div>
+          </div>
+
+          <!-- حضور و غیاب -->
+          <div class="accordion">
+            <div class="accordion-header">حضور و غیاب دانش آموزان</div>
+            <div class="accordion-content">
+            <a href="#"> دانش آموزان غایب برسی شده</a>
+            <a href="#"> دانش‌آموزان غایب برسی نشد</a>
+            </div>
+          </div>
+
+          <div class="accordion open">
+            <div class="accordion-header">مدیریت ثبت نام ها</div>
+            <div class="accordion-content">
+               <a href="#"> دانش‌آموزان در انتظار تایید</a>
+               <a href="#"> دانش‌آموزان در انتظار کلاس بندی</a>
+            </div>
+          </div>
+
+          <!-- فوتر -->
+          <div>
+            <div class="footer">MAHOR</div>
+            <a href="#" class="logout"> خروج از حساب کاربری</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <!-- منو -->
+        <nav class="main-menu">
+          <button class="menu-btn">
+            <img src="../imgs/home/ican/menu.png" alt="">
+          </button>
+          <p>MOHOR</p>
+        </nav>
+
+        <!-- هیدر -->
+        <div class="main-header">
+          <p>سایت ماهور</p>
+          <h1>  افزودن کلاس  </h1>
+        </div>
+          <!-- ************************************* -->
+                   <!--  شروع کد های صفحه اصلی -->
+          <!-- ************************************* -->
+
+             <div class="dropdown-container">
+        <input type="text" class="search-box" placeholder="جستجو...">
+        <button class="dropdown-btn">
+            <p>لیست دانش آموزان</p>
+            <p>▼</p>
+            </button>
+        <div class="dropdown-content">
+            <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+             <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+            <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+            <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+            <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+              <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+          <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+            <div class="dropdown-item">
+                <span class="name">نیما حبیب نژاد</span>
+                <span class="class">کلاس دهم الف</span>
+                <span class="number">009834344535</span>
+            </div>
+        </div>
+    </div>
+
+           
+           
+        <!-- ************************************* -->
+                   <!--  پایان کد های صفحه اصلی -->
+          <!-- ************************************* -->
+
+    <nav class="bottom-nav">
+      <a id="hozor" class="buttonican" href="">
+        <img src="../fonts/ican/Frame.png" alt="" />
+        <p>حضور</p>
+      </a>
+      <a class="buttonican" href="">
+        <img src="../fonts/ican/Clip path group.png" alt="" />
+        <p>ثبت نام</p>
+      </a>
+      <a class="buttonican" href="">
+        <img src="../fonts/ican/Group.png" alt="" />
+        <p>شورا</p>
+      </a>
+      <a id="amalcart" class="buttonican" href="">
+        <img src="../fonts/ican/Group (1).png" alt="" />
+        <p>عملکرد</p>
+      </a>
+    </nav>
+
+  
+
+    <script>
+      const modal = document.getElementById("modalOverlay");
+      const regectBtn = document.querySelectorAll(".regect-btn");
+      const menubtn = document.querySelector(".menu-btn");
+      const sidebar = document.querySelector(".sidebar");
+
+      // آکاردئون
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", (e) => {
+          e.preventDefault();
+          header.parentElement.classList.toggle("open");
+        });
+      });
+
+      regectBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modal.style.display = "flex";
+        });
+      });
+
+      // MENU BUTTON
+      menubtn.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      document.addEventListener("click", function (event) {
+        if (
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(event.target) &&
+          !menubtn.contains(event.target)
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+    //   ******cod******
+  
+  function generateClassCode() {
+    const prefix = "MATH";
+    const number = Math.floor(100 + Math.random() * 900); 
+    return prefix + number;
+  }
+
+  function handleSubmit() {
+    const classCodeInput = document.getElementById("class-code");
+
+    if (classCodeInput.value.trim() === "") {
+      classCodeInput.value = generateClassCode();
+    }
+
+    alert("اطلاعات ثبت شد:\nنام کلاس: " + document.getElementById("class-name").value +
+          "\nکد کلاس: " + classCodeInput.value);
+  }
+
+
+//   ************** جدید*****************
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownBtn = document.querySelector('.dropdown-btn');
+    const dropdownContent = document.querySelector('.dropdown-content');
+    const searchBox = document.querySelector('.search-box');
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    
+
+    dropdownBtn.addEventListener('click', function() {
+        if (dropdownContent.classList.contains('show')) {
+            
+            dropdownContent.style.maxHeight = '0';
+            dropdownContent.style.opacity = '0';
+            setTimeout(() => {
+                dropdownContent.classList.remove('show');
+            }, 500); 
+        } else {
+       
+            dropdownContent.classList.add('show');
+            
+            setTimeout(() => {
+                dropdownContent.style.maxHeight = '300px';
+                dropdownContent.style.opacity = '1';
+            }, 10);
+        }
+    });
+    
+    // بقیه کدها بدون تغییر...
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-btn') && !event.target.matches('.search-box') && !event.target.closest('.dropdown-content')) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.style.maxHeight = '0';
+                dropdownContent.style.opacity = '0';
+                setTimeout(() => {
+                    dropdownContent.classList.remove('show');
+                }, 500);
+            }
+        }
+    });
+    
+    // فیلتر کردن لیست بر اساس جستجو
+    searchBox.addEventListener('keyup', function() {
+        const filter = searchBox.value.toLowerCase();
+        
+        dropdownItems.forEach(item => {
+            const name = item.querySelector('.name').textContent.toLowerCase();
+            const classText = item.querySelector('.class').textContent.toLowerCase();
+            const number = item.querySelector('.number').textContent.toLowerCase();
+            
+            if (name.includes(filter) || classText.includes(filter) || number.includes(filter)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+    
+    // انتخاب آیتم از لیست
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const name = this.querySelector('.name').textContent;
+            const classText = this.querySelector('.class').textContent;
+            const number = this.querySelector('.number').textContent;
+            
+            dropdownBtn.textContent = `${name} - ${classText} (${number}) ▼`;
+            dropdownContent.style.maxHeight = '0';
+            dropdownContent.style.opacity = '0';
+            setTimeout(() => {
+                dropdownContent.classList.remove('show');
+            }, 500);
+        });
+    });
+});
+
+    </script>
+  </body>
+</html>
